@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+# work/ — solo ignorar snapshots y scripts temporales; mesas_pendientes.txt SÍ se trackea
+work/*
+!work/mesas_pendientes.txt
+!work/desconocidos.txt
+!work/actas_descargadas.tsv
+!work/reconciliacion_estado.txt
+# No trackear PDFs de actas ni subdirectorios de mesa
+acta/
+actas/
+output/mesa_*/
+output/**/*.pdf

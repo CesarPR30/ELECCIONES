@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Perú 2026 · Segunda Vuelta — Resultados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Portada -->
+<section class="cover">
+  <p class="kicker">Resultados oficiales · ONPE</p>
+  <h1>¿Cómo votó el Perú<br>en la segunda vuelta?</h1>
+  <p class="sub">Un país dividido casi por la mitad. Recorre, provincia por provincia y hasta el voto en
+     el extranjero, cómo se repartieron los votos entre <b class="t-jp">Roberto Sánchez</b> y
+     <b class="t-fp">Keiko Fujimori</b>.</p>
+  <div class="scroll-hint">Desplázate para empezar ↓</div>
+</section>
+
+<!-- Scrollytelling: gráfico IZQUIERDA, texto DERECHA -->
+<section class="scrolly">
+  <div class="graphic">
+    <div class="graphic-inner">
+      <!-- escena de mapa -->
+      <div id="mapwrap" class="scene">
+        <svg id="map" viewBox="0 0 720 800" preserveAspectRatio="xMidYMid meet"></svg>
+        <div id="legend" class="legend"></div>
+      </div>
+      <!-- escena de panel (resultados / extranjero / ranking) -->
+      <div id="panel" class="scene" hidden></div>
+      <div id="tooltip" class="tooltip" hidden></div>
+    </div>
+  </div>
+
+  <div class="narrative" id="steps">
+    <div class="step" data-step="nacional">
+      <h2>Un final de fotografía</h2>
+      <p>Con casi el <strong id="pctActas">100%</strong> de actas contabilizadas,
+         <b class="t-fp">Keiko Fujimori</b> se impone a <b class="t-jp">Roberto Sánchez</b> por apenas
+         <strong id="difVotos"></strong> votos: <strong id="difPct"></strong> puntos de diferencia.
+         Una de las elecciones más reñidas de la historia peruana.</p>
+    </div>
+
+    <div class="step" data-step="mapa">
+      <h2>El mapa del poder</h2>
+      <p>Cada provincia pintada según quién ganó. El <b class="t-jp">verde</b> de Sánchez cubre casi
+         todo el sur andino y la selva; el <b class="t-fp">naranja</b> de Fujimori se concentra en la
+         costa norte y el centro. A simple vista, el país luce mayoritariamente verde.</p>
+    </div>
+
+    <div class="step" data-step="territorio">
+      <h2>Pero el territorio no vota: la gente vota</h2>
+      <p>Ahora cada provincia es una <strong>burbuja proporcional a sus votos</strong>. El mapa se
+         transforma: una sola burbuja —<strong>Lima</strong>— eclipsa a decenas de provincias andinas.
+         Sánchez ganó <strong>152 de 195 provincias</strong>, pero Fujimori venció donde se concentran
+         los electores.</p>
+    </div>
+
+    <div class="step" data-step="sanchez">
+      <h2>El Perú que votó por Sánchez</h2>
+      <p>Su fortaleza está en el sur y la sierra: Cusco, Puno, Apurímac, Huancavelica, Ayacucho.
+         En varias de esas provincias superó el <strong>70%</strong> de los votos válidos.</p>
+    </div>
+
+    <div class="step" data-step="fujimori">
+      <h2>El Perú que votó por Fujimori</h2>
+      <p>Menos provincias, pero las más pobladas: <strong>Lima</strong>, el Callao y buena parte de la
+         costa norte —Piura, La Libertad, Lambayeque— le dieron el impulso decisivo.</p>
+    </div>
+
+    <div class="step" data-step="lima">
+      <h2>Lima: la provincia que decide</h2>
+      <p>Una sola provincia —<strong>Lima Metropolitana</strong>— reúne más votos que varias regiones
+         juntas. Por eso pesa tanto: aquí <b class="t-fp">Fujimori ganó con 64,5%</b>. En sus
+         <strong>43 distritos</strong>, el color va del <b class="t-jp">verde</b> de Sánchez al
+         <b class="t-fp">naranja</b> de Fujimori, y el <strong>gris</strong> marca los más reñidos.</p>
+    </div>
+
+    <div class="step" data-step="limaburbujas">
+      <h2>Cada distrito, según su peso</h2>
+      <p>Ahora cada distrito es una <strong>burbuja proporcional a sus votantes</strong>: las grandes
+         —San Juan de Lurigancho, San Martín de Porres, Ate— mueven la balanza. El color va del
+         <b class="t-jp">verde</b> al <b class="t-fp">naranja</b> según la inclinación; el <strong>gris</strong>,
+         los más parejos.</p>
+    </div>
+
+    <div class="step" data-step="extranjero">
+      <h2>El voto desde el extranjero</h2>
+      <p>Más de un millón de peruanos en el exterior. Allí la historia se invierte:
+         <b class="t-fp">Fujimori arrasa con el 63%</b>. Domina en Estados Unidos, España, Chile, Italia
+         y, sobre todo, en Asia, donde supera el 89%. En el mapa, la intensidad del color revela con
+         cuánta ventaja se impuso en cada país.</p>
+    </div>
+
+    <div class="step" data-step="extranjeroburbujas">
+      <h2>¿Dónde están los votos del exterior?</h2>
+      <p>Cada país es una <strong>burbuja proporcional a sus votantes</strong>: cuatro destinos
+         —<strong>EE. UU., España, Chile y Argentina</strong>— concentran la enorme mayoría del voto
+         exterior. Ordenadas por tamaño, la distancia entre ellos y el resto se vuelve evidente; el color
+         va del <b class="t-jp">verde</b> al <b class="t-fp">naranja</b> según la inclinación.</p>
+    </div>
+
+    <div class="step" data-step="ranking">
+      <h2>Departamento por departamento</h2>
+      <p>Del naranja más intenso (Fujimori) al verde más profundo (Sánchez). El centro del gráfico
+         —cerca del 50%— concentra los departamentos donde se definió la elección.</p>
+    </div>
+
+    <div class="step" data-step="explorar">
+      <h2>Un país partido por la mitad</h2>
+      <p>De los Andes a la costa, y del territorio nacional al extranjero, el patrón se repite: dos
+         Perús separados por apenas unas décimas. La segunda vuelta más estrecha que se recuerde se
+         definió, al final, por dónde vive la mayoría de los electores.</p>
+      <p class="src">Fuente: ONPE — API oficial (idEleccion 10), datos extraídos por
+         <a href="https://github.com/oscarzamora/onpe-scraper-2026-2" target="_blank" rel="noopener">oscarzamora/onpe-scraper-2026-2</a>.
+         Geometría: <a href="https://github.com/juaneladio/peru-geojson" target="_blank" rel="noopener">juaneladio/peru-geojson</a>.</p>
+    </div>
+  </div>
+</section>
+
+<footer>Visualización con scrollytelling · datos ONPE Segunda Vuelta 2026</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+:root{
+  --bg:#ffffff; --bg2:#f4f6fa; --panel:#ffffff;
+  --ink:#1c2330; --muted:#6b7280; --line:#e6e9ef;
+  --jp:#5fba51;  /* Roberto Sánchez */
+  --fp:#f26d35;  /* Keiko Fujimori */
+  --jp-d:#3f9b34; --fp-d:#d8521c;
+}
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+b,strong{color:#0f1622;font-weight:700}
+a{color:var(--jp-d)}
+.t-fp{color:var(--fp-d)} .t-jp{color:var(--jp-d)}
+
+/* Portada */
+.cover{max-width:1000px;margin:0 auto;padding:0 24px;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start}
+.kicker{font-family:"Archivo";letter-spacing:.18em;text-transform:uppercase;font-size:12px;
+  color:var(--ink);margin:0 0 14px;font-weight:700}
+.cover h1{font-family:"Archivo";font-weight:900;font-size:clamp(34px,6vw,72px);line-height:1.02;
+  margin:0;letter-spacing:-.02em}
+.cover .sub{font-size:clamp(16px,2vw,21px);color:#42495a;max-width:640px;margin-top:24px}
+.scroll-hint{margin-top:38px;font-family:"Archivo";letter-spacing:.1em;text-transform:uppercase;
+  font-size:12px;color:var(--muted);animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+/* Scrolly: gráfico IZQUIERDA, texto DERECHA */
+.scrolly{display:flex;align-items:flex-start;max-width:1320px;margin:0 auto;gap:36px;padding:0 24px}
+.graphic{position:sticky;top:0;flex:0 0 56%;height:100vh;
+  display:flex;align-items:center}
+.graphic-inner{position:relative;width:100%;height:88%}
+.scene{position:absolute;inset:0;transition:opacity .5s}
+#map{width:100%;height:100%;display:block}
+#panel{overflow:auto;padding:6px}
+
+.narrative{flex:1;padding:0}
+.step{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:26px 28px;margin:0;scroll-snap-align:start;
+  opacity:.32;transition:opacity .45s}
+.step.is-active{opacity:1}
+.step h2{font-family:"Archivo";font-weight:800;font-size:clamp(22px,2.4vw,30px);margin:0 0 14px;
+  letter-spacing:-.01em;line-height:1.12}
+.step p{margin:0 0 12px;font-size:17px;color:#3a4150}
+.step .src{font-size:13px;color:var(--muted)}
+
+/* Mapa */
+.prov{stroke:#fff;stroke-width:.5;transition:fill .7s}
+.bub{stroke:#fff;stroke-width:1;transition:fill .5s}
+.bub.pend{stroke:#c0392b;stroke-width:2}
+.dep-line{fill:none;stroke:#c9cfdb;stroke-width:.9}
+.maplabel{font-family:"Archivo";font-weight:800;fill:#1c2330;paint-order:stroke;
+  stroke:#fff;stroke-width:3px;font-size:13px;pointer-events:none}
+.anno{font-size:13px;fill:var(--muted)}
+
+/* Leyenda: barra de degradé sin recuadro */
+.legend{position:absolute;left:10px;bottom:8px;background:none;border:none;
+  border-radius:0;padding:0;box-shadow:none}
+.leg-grad{display:flex;align-items:center;justify-content:center;gap:9px;
+  font-family:"Archivo";font-weight:700;font-size:12px}
+.leg-grad .lg-bar{width:172px;height:12px;border-radius:6px;
+  background:linear-gradient(90deg,var(--jp) 0%,#e9ebf0 50%,var(--fp) 100%)}
+.leg-grad .lg-end{white-space:nowrap;text-shadow:0 1px 2px #fff,0 0 4px #fff}
+
+/* Panel (resultados / extranjero / ranking) */
+.panel-card{background:none;border:none;border-radius:0;padding:10px 6px;
+  box-shadow:none;height:100%;display:flex;flex-direction:column;justify-content:center}
+.res-h{font-family:"Archivo";font-weight:800;font-size:20px;margin:0 0 18px}
+.cand-row{margin:14px 0}
+.cand-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.cand-name{font-weight:700;font-size:16px} .cand-name small{color:var(--muted);font-weight:500}
+.cand-pct{font-family:"Archivo";font-weight:900;font-size:30px}
+.cand-bar{height:16px;border-radius:9px;background:#eef1f5;overflow:hidden}
+.cand-bar i{display:block;height:100%;border-radius:9px}
+.cand-votes{font-size:13px;color:var(--muted);margin-top:5px}
+.mini{display:flex;gap:18px;margin-top:18px;border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--muted)}
+.mini b{font-family:"Archivo";color:var(--ink);font-size:17px;display:block}
+.progress-actas{margin-top:16px}
+.progress-actas .track{height:10px;background:#eef1f5;border-radius:6px;overflow:hidden}
+.progress-actas .track i{display:block;height:100%;background:linear-gradient(90deg,var(--jp),var(--fp))}
+.axis text{fill:var(--muted);font-size:11px} .axis line,.axis path{stroke:var(--line)}
+.bar-val{font-family:"Archivo";font-weight:800}
+
+/* Barra Lima · (distrito) — continua, sin espacios, con tooltip por partido */
+.lima-h{margin:0 0 8px}
+.lima-bar{position:relative;display:flex;height:28px;border-radius:8px;overflow:hidden;margin:0 0 4px}
+.lima-bar i{display:block;height:100%;cursor:pointer;transition:width .4s ease}
+.lima-bar .bj{background:var(--jp)} .lima-bar .bf{background:var(--fp)}
+.lima-bar .bl{position:absolute;top:50%;transform:translateY(-50%);color:#fff;
+  font-family:"Archivo";font-weight:800;font-size:13px;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.lima-bar .bl-l{left:10px} .lima-bar .bl-r{right:10px}
+.lima-ctrl{display:flex;justify-content:flex-end;margin:2px 0 0}
+.sort-btn{font-family:"Archivo";font-weight:700;font-size:12.5px;color:#3a4150;cursor:pointer;
+  background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;transition:background .2s}
+.sort-btn:hover{background:#e8ecf3}
+.map-legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:4px;
+  font-size:12px;color:#3a4150}
+.map-legend span{display:inline-flex;align-items:center;gap:6px}
+.map-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.map-box{position:relative;flex:1;min-height:0;overflow:hidden;border-radius:10px;cursor:grab}
+.map-box:active{cursor:grabbing}
+.map-zoom{position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:5px;z-index:5}
+.map-zoom button{font-family:"Archivo";font-weight:700;font-size:13px;color:#3a4150;cursor:pointer;
+  background:#fffffff2;border:1px solid var(--line);border-radius:7px;min-width:30px;height:30px;
+  padding:0 8px;box-shadow:0 2px 8px rgba(20,30,60,.10);transition:background .15s}
+.map-zoom button:hover{background:#eef1f5}
+.map-zoom button#zEu{font-size:11.5px}
+
+/* Escena VS (resultado nacional) — sin bordes ni scroll */
+.panel-card.hero{justify-content:center;gap:6px;border:none;box-shadow:none;background:none;
+  padding:6px 38px;overflow:hidden}
+.vs-stage{position:relative;width:100%;flex:0 1 auto;min-height:300px}
+.vs-stage #vssvg{position:absolute;inset:0;width:100%;height:100%}
+.vs-stage .logo{position:absolute;top:35%;transform:translateY(-50%);width:22%;max-width:148px;
+  aspect-ratio:1;background:#fff;border-radius:50%;padding:13px;object-fit:contain;
+  box-shadow:0 8px 26px rgba(20,30,60,.18);z-index:2}
+.vs-stage .logo-l{left:0;border:5px solid var(--jp)}
+.vs-stage .logo-r{right:0;border:5px solid var(--fp)}
+.vs-stage .logo-name{position:absolute;top:40%;transform:translateY(62px);width:22%;max-width:148px;
+  text-align:center;font-family:"Archivo";font-weight:800;font-size:17px;letter-spacing:.02em;
+  line-height:1.15;z-index:3;pointer-events:none}
+.vs-stage .logo-name-l{left:0}
+.vs-stage .logo-name-r{right:0}
+.vs-stage .vs-badge{position:absolute;left:50%;top:65%;transform:translate(-50%,-50%);z-index:3;
+  font-family:"Archivo";font-weight:900;font-size:34px;color:#3a4150;
+  text-shadow:0 2px 8px #fff,0 0 14px #fff;letter-spacing:1px;
+  pointer-events:none;user-select:none;-webkit-user-select:none}
+/* puntaje grande + barra tug */
+.hero-score{margin-top:-6px}
+.hs-row{display:flex;justify-content:space-between;align-items:flex-end}
+.hs-pct{font-family:"Archivo";font-weight:900;font-size:clamp(30px,4.4vw,46px);line-height:1}
+.tugbar{display:flex;height:22px;border-radius:11px;overflow:hidden;margin:9px 0;
+  box-shadow:inset 0 0 0 1px var(--line)}
+.tugbar i{display:block;height:100%}
+.hs-names{margin-top:2px}
+.hs-names b{display:block;font-size:13px;font-weight:700;line-height:1.2}
+.hs-names small{color:var(--muted);font-size:12px}
+.hs-names .nm-r{text-align:right}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.metric{background:var(--bg2);border:none;border-radius:11px;padding:11px 13px}
+.metric b{font-family:"Archivo";font-weight:800;font-size:20px;display:block;line-height:1.1}
+.metric span{font-size:11.5px;color:var(--muted)}
+.hero-leg{font-size:11.5px;color:var(--muted);margin-top:12px;text-align:center}
+
+/* Tooltip */
+.tooltip{position:fixed;z-index:80;pointer-events:none;background:#fff;border:1px solid var(--line);
+  border-radius:10px;padding:11px 13px;font-size:13px;max-width:250px;box-shadow:0 12px 36px rgba(20,30,60,.16)}
+.tooltip h4{margin:0 0 7px;font-family:"Archivo";font-size:14px}
+.tooltip h4 small{color:var(--muted);font-weight:400}
+.tooltip .tt-bar{height:8px;border-radius:5px;margin:7px 0;display:flex;overflow:hidden}
+.tooltip .tt-bar i{display:block;height:100%}
+.tooltip .row{display:flex;justify-content:space-between;gap:16px;margin:2px 0;color:var(--muted)}
+.tooltip .row b{color:var(--ink)}
+
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 50px;border-top:1px solid var(--line)}
+
+@media(max-width:820px){
+  .scrolly{flex-direction:column}
+  .graphic{position:sticky;top:0;height:56vh;flex-basis:auto;width:100%}
+  .narrative{padding:4vh 0 20vh;width:100%}
+  .step{min-height:auto;margin:3vh 0}
+}
