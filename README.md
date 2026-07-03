@@ -25,8 +25,6 @@ python -m http.server 8000
 # abre http://localhost:8000
 ```
 
-## Créditos y fuentes
+## Datos
 
-- Datos: **ONPE** — API oficial (`idEleccion 10`), extraídos con
-  [oscarzamora/onpe-scraper-2026-2](https://github.com/oscarzamora/onpe-scraper-2026-2).
-- Geometría: [juaneladio/peru-geojson](https://github.com/juaneladio/peru-geojson).
+Resultados oficiales de la **ONPE** — Segunda Vuelta Presidencial 2026.

@@ -113,7 +113,7 @@ const SCENES = {
   extranjero(){ useMap(false); panelExtranjero(); },
   extranjeroburbujas(){ useMap(false); panelExtranjeroBurbujas(); },
   ranking(){ useMap(false); panelRanking(); },
-  explorar(){ bubbles(null); setLegend(legGradient); },
+  explorar(){ useMap(false); panelCierre(); },
 };
 function bubbles(highlight){
   useMap(true);
@@ -411,12 +411,49 @@ function panelRanking(){
     .text(d=>(d.winner===JP?d.pct_jp:d.pct_fp).toFixed(1)+'%');
   setLegend('');
 }
+// ---------- cierre: la cifra que definió la elección ----------
+function panelCierre(){
+  panelEl.style.overflow='hidden';
+  const dif = Math.abs(NAT.fp.votos - NAT.jp.votos);
+  const difPct = Math.abs(NAT.fp.pct - NAT.jp.pct).toFixed(2);
+  const validos = NAT.fp.votos + NAT.jp.votos;
+  const nulosX = Math.round(NAT.nulos / dif);
+  const winD = NAT.fp.votos >= NAT.jp.votos ? C.fpD : C.jpD;
+  panelEl.innerHTML = `<div class="panel-card cierre">
+    <p class="cierre-kicker">El desenlace</p>
+    <div class="cierre-hero">
+      <span class="cierre-num" id="cierreNum" style="color:${winD}">0</span>
+      <span class="cierre-unit">votos de diferencia</span>
+    </div>
+    <div class="cierre-tug"><i class="ct-jp"></i><i class="ct-fp"></i></div>
+    <div class="cierre-ends">
+      <span><b style="color:${C.jpD}">Sánchez</b> · ${NAT.jp.pct.toFixed(2)}%</span>
+      <span>${NAT.fp.pct.toFixed(2)}% · <b style="color:${C.fpD}">Fujimori</b></span>
+    </div>
+    <p class="cierre-lead">De <b>${fmt(validos)}</b> votos válidos, apenas <b>${difPct} puntos</b> definieron quién gobierna el Perú.</p>
+    <div class="metrics cierre-metrics">
+      ${metric(difPct+'%','del total válido')}
+      ${metric(fmt(NAT.nulos),'votos nulos')}
+      ${metric(nulosX+'×','nulos vs. la diferencia',winD)}
+    </div>
+  </div>`;
+  const el = document.getElementById('cierreNum');
+  d3.select(el).transition().duration(1700).ease(d3.easeCubicOut)
+    .tween('n',()=>{const i=d3.interpolateNumber(0,dif); return t=>{el.textContent=fmt(i(t));};});
+  d3.select('.cierre-tug .ct-jp').style('width','50%').transition().duration(1400).ease(d3.easeCubicOut).style('width',NAT.jp.pct+'%');
+  d3.select('.cierre-tug .ct-fp').style('width','50%').transition().duration(1400).ease(d3.easeCubicOut).style('width',NAT.fp.pct+'%');
+  setLegend('');
+}
 
 // ---------- texto dinámico ----------
 function fillStatic(){
   document.getElementById('pctActas').textContent = NAT.actas_pct.toFixed(1)+'%';
-  document.getElementById('difVotos').textContent = fmt(Math.abs(NAT.fp.votos-NAT.jp.votos));
+  const dif = Math.abs(NAT.fp.votos-NAT.jp.votos);
+  document.getElementById('difVotos').textContent = fmt(dif);
   document.getElementById('difPct').textContent = Math.abs(NAT.fp.pct-NAT.jp.pct).toFixed(2);
+  document.getElementById('cierreDifH').textContent = fmt(dif);
+  document.getElementById('cierreDifPct').textContent = Math.abs(NAT.fp.pct-NAT.jp.pct).toFixed(2)+'%';
+  document.getElementById('cierreNulosX').textContent = Math.round(NAT.nulos/dif);
 }
 
 // ---------- init ----------

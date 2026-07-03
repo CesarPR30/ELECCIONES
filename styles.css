@@ -142,6 +142,24 @@ a{color:var(--jp-d)}
 .metric span{font-size:11.5px;color:var(--muted)}
 .hero-leg{font-size:11.5px;color:var(--muted);margin-top:12px;text-align:center}
 
+/* Cierre — la cifra que definió la elección */
+.panel-card.cierre{justify-content:center;text-align:center;gap:0;padding:6px 30px;overflow:hidden}
+.cierre-kicker{font-family:"Archivo";letter-spacing:.2em;text-transform:uppercase;font-size:12px;
+  font-weight:700;color:var(--muted);margin:0 0 10px}
+.cierre-hero{display:flex;flex-direction:column;align-items:center;line-height:.94}
+.cierre-num{font-family:"Archivo";font-weight:900;font-size:clamp(56px,9vw,108px);
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.cierre-unit{font-family:"Archivo";font-weight:700;font-size:14px;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.09em;margin-top:8px}
+.cierre-tug{display:flex;height:26px;border-radius:13px;overflow:hidden;margin:26px 0 8px;
+  box-shadow:inset 0 0 0 1px var(--line)}
+.cierre-tug i{display:block;height:100%;width:50%}
+.cierre-tug .ct-jp{background:var(--jp)} .cierre-tug .ct-fp{background:var(--fp)}
+.cierre-ends{display:flex;justify-content:space-between;font-family:"Archivo";font-weight:700;
+  font-size:14px;color:#3a4150}
+.cierre-lead{font-size:16px;color:#3a4150;margin:22px auto 4px;max-width:440px}
+.cierre-metrics{margin-top:18px;text-align:left}
+
 /* Tooltip */
 .tooltip{position:fixed;z-index:80;pointer-events:none;background:#fff;border:1px solid var(--line);
   border-radius:10px;padding:11px 13px;font-size:13px;max-width:250px;box-shadow:0 12px 36px rgba(20,30,60,.16)}
