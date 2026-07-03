@@ -1,3 +1,7 @@
+# Archivos locales que NO forman parte del sitio publicado
+onpe-data/
+build_data.py
+
 # Python
 __pycache__/
 *.pyc
@@ -9,10 +13,3 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
-
-# onpe-data: scratch y volcados crudos regenerables del scraper (pesados)
-# Se conserva el código fuente (src/, scripts/) y los resúmenes (resumen/).
-onpe-data/work/
-onpe-data/output/
-onpe-data/acta/
-onpe-data/actas/

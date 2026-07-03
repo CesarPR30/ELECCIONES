@@ -9,28 +9,18 @@ provincia, distritos de Lima y voto en el extranjero.
 ## Estructura
 
 ```
-site/                 Sitio estático publicado en GitHub Pages
-  index.html          Página principal (scrollytelling)
-  main.js             Lógica de mapas y burbujas (d3 + scrollama)
-  styles.css
-  data/               GeoJSON + JSON de resultados que consume el sitio
-build_data.py         Genera los JSON de site/data a partir de onpe-data
-onpe-data/            Pipeline de scraping de la API oficial de ONPE
+index.html     Página principal (scrollytelling)
+main.js        Lógica de mapas y burbujas (d3 + scrollama)
+styles.css
+data/          GeoJSON + JSON de resultados que consume el sitio
 ```
 
-## Despliegue (GitHub Pages)
-
-El sitio se publica automáticamente con GitHub Actions en cada `push` a `main`
-(ver [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)), tomando la
-carpeta [`site/`](site/) como raíz.
-
-Para activarlo la primera vez:
-**Settings → Pages → Build and deployment → Source: _GitHub Actions_.**
+Sitio estático servido directamente por **GitHub Pages** desde la rama `main` (raíz).
+El archivo `.nojekyll` desactiva el procesamiento Jekyll.
 
 ## Desarrollo local
 
 ```bash
-cd site
 python -m http.server 8000
 # abre http://localhost:8000
 ```
